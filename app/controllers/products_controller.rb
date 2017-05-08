@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:edit, :show, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.page(params[:page])
   end
 
   def new
