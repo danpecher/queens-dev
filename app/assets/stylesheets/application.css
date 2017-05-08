@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+p.active {
+    animation: blink 1.5s;
+}
+
+@keyframes blink {
+    0%  {
+        background: #fff;
+    }
+
+    50% {
+        background: #2e8329;
+    }
+
+    100%  {
+        background: #fff;
+    }
+}

@@ -3,5 +3,5 @@
 <%= link_to 'Upravit', edit_invoice_path(@invoice) %>
 
 <% @invoice.invoice_items.each do |item| %>
-    <p><%= item.product_variant.code %> (<%= item.quantity %>ks)</p>
+    <p><%= link_to item.product_variant.code, product_path(item.product_variant.product, variant_id: item.product_variant.id) %> (<%= item.quantity %>ks)</p>
 <% end %>

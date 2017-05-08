@@ -3,5 +3,5 @@
 <%= link_to 'Upravit', edit_product_path(@product) %>
 
 <% @product.product_variants.each do |variant| %>
-    <p><%= variant.code %></p>
+    <p class="<%= params[:variant_id].to_i == variant.id ? 'active' : '' %>"><%= variant.code %></p>
 <% end %>
