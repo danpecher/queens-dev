@@ -1,0 +1,23 @@
+<h1>Produkty</h1>
+
+<%= link_to 'Vytvořit', new_product_path %>
+
+<table>
+  <tr>
+    <th>Název</th>
+  </tr>
+  <% if @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td>
+          <%= link_to product_path(product), method: :delete, data: {confirm: 'Opravdu smazat?'} do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end.empty? %>
+      <tr>
+        <td>Žádné produkty</td>
+      </tr>
+  <% end %>
+</table>
