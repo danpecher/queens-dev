@@ -1,3 +1,7 @@
 <h1>Produkt <%= @product.name %></h1>
 
 <%= link_to 'Upravit', edit_product_path(@product) %>
+
+<% @product.product_variants.each do |variant| %>
+    <p><%= variant.code %></p>
+<% end %>

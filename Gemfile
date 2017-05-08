@@ -28,3 +28,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
 gem 'simple_form'
+gem 'jquery-rails'
+gem 'nested_form_fields'
