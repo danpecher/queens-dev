@@ -4,9 +4,7 @@
     <%= f.nested_fields_for :invoice_items do |ff| %>
         <%= ff.input :product_variant_id, as: :grouped_select, collection: Product.all, group_method: :product_variants, label_method: :code, prompt: 'Vyberte variantu', label: 'Produkt' %>
         <%= ff.input :quantity, input_html: {min: 1}, label: 'Počet' %>
-        <%= ff.remove_nested_fields_link do %>
-            <i class="fa fa-trash"></i>
-        <% end %>
+        <%= ff.remove_nested_fields_link, 'Smazat' %>
     <% end %>
     <%= f.add_nested_fields_link :invoice_items, 'Přidat položku', class: 'button is-small' %>
 
