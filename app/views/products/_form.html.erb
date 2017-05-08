@@ -1,9 +1,9 @@
 <%= simple_form_for @product do |f| %>
     <%= f.input :name %>
 
-    <%= f.nested_fields_for :product_variants do |v| %>
-        <%= v.input :code, label: 'Kód varianty' %>
-        <%= v.remove_nested_fields_link do %>
+    <%= f.nested_fields_for :product_variants do |ff| %>
+        <%= ff.input :code, label: 'Kód varianty' %>
+        <%= ff.remove_nested_fields_link do %>
             <i class="fa fa-trash"></i>
         <% end %>
     <% end %>

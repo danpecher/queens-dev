@@ -27,6 +27,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'kaminari'
-gem 'simple_form'
+gem 'simple_form', github: 'elsurudo/simple_form', branch: 'rails-5.1.0'
 gem 'jquery-rails'
 gem 'nested_form_fields'

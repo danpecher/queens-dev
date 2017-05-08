@@ -1,0 +1,25 @@
+<h1>Doklady</h1>
+
+<%= link_to 'Vytvořit', new_invoice_path %>
+
+<table>
+  <tr>
+    <th>Kód</th>
+  </tr>
+  <% if @invoices.each do |invoice| %>
+      <tr>
+        <td><%= link_to invoice.number, invoice_path(invoice) %></td>
+        <td>
+          <%= link_to invoice_path(invoice), method: :delete, data: {confirm: 'Opravdu smazat?'} do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end.empty? %>
+      <tr>
+        <td>Žádné doklady</td>
+      </tr>
+  <% end %>
+</table>
+
+<%= paginate @invoices %>

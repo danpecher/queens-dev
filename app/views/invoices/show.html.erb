@@ -1,0 +1,7 @@
+<h1>Doklad #<%= @invoice.number %></h1>
+
+<%= link_to 'Upravit', edit_invoice_path(@invoice) %>
+
+<% @invoice.invoice_items.each do |item| %>
+    <p><%= item.product_variant.code %> (<%= item.quantity %>ks)</p>
+<% end %>

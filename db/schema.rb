@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508173424) do
+ActiveRecord::Schema.define(version: 20170508182632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invoice_items", force: :cascade do |t|
+    t.bigint "invoice_id"
+    t.bigint "product_variant_id"
+    t.integer "quantity"
+    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
+    t.index ["product_variant_id"], name: "index_invoice_items_on_product_variant_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "number"
+  end
 
   create_table "product_variants", force: :cascade do |t|
     t.string "code"
@@ -25,5 +37,7 @@ ActiveRecord::Schema.define(version: 20170508173424) do
     t.string "name"
   end
 
+  add_foreign_key "invoice_items", "invoices"
+  add_foreign_key "invoice_items", "product_variants"
   add_foreign_key "product_variants", "products"
 end
