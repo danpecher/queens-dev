@@ -36,6 +36,13 @@ class InvoicesController < ApplicationController
     redirect_to invoices_path
   end
 
+  def destroy_item
+    @item = InvoiceItem.find(params[:id])
+    @item.destroy
+
+    redirect_back fallback_location: invoices_path
+  end
+
   private
   def invoice_params
     params.require(:invoice).permit(:number, invoice_items_attributes: [:id, :product_variant_id, :quantity, :_destroy])

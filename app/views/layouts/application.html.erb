@@ -1,16 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Queens</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Queens</title>
+  <%= csrf_meta_tags %>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-  </head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.css">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+</head>
 
-  <body>
-    <%= yield %>
+<body>
 
-  <%= javascript_include_tag 'application' %>
-  </body>
+<nav class="nav">
+  <div class="nav-left">
+    <%= link_to 'Produkty', products_path, class: 'nav-item' %>
+    <%= link_to 'Doklady', invoices_path, class: 'nav-item' %>
+  </div>
+
+  <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
+  <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
+  <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+</nav>
+
+
+<% if flash.present? %>
+    <div class="section">
+      <% flash.each do |name, msg| %>
+          <div class="notification is-<%= name %>">
+            <%= msg %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+
+
+<section class="section">
+  <%= yield %>
+</section>
+
+<%= javascript_include_tag 'application' %>
+</body>
 </html>

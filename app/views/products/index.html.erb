@@ -1,17 +1,26 @@
-<h1>Produkty</h1>
+<h1 class="title">Produkty <%= link_to 'Vytvořit', new_product_path, class: 'button is-success' %></h1>
 
-<%= link_to 'Vytvořit', new_product_path %>
-
-<table>
+<table class="table">
+  <thead>
   <tr>
     <th>Název</th>
+    <th></th>
   </tr>
+  </thead>
+  <tbody>
   <% if @products.each do |product| %>
       <tr>
         <td><%= link_to product.name, product_path(product) %></td>
-        <td>
-          <%= link_to product_path(product), method: :delete, data: {confirm: 'Opravdu smazat?'} do %>
-            <i class="fa fa-trash"></i>
+        <td class="last-col">
+          <%= link_to product_path(product), method: :delete, data: {confirm: 'Opravdu smazat?'}, class: 'button is-danger is-small' do %>
+              <span class="icon is-small">
+                <i class="fa fa-trash"></i>
+              </span>
+          <% end %>
+          <%= link_to edit_product_path(product), class: 'button is-primary is-small' do %>
+              <span class="icon is-small">
+                <i class="fa fa-pencil"></i>
+              </span>
           <% end %>
         </td>
       </tr>
@@ -20,6 +29,7 @@
         <td>Žádné produkty</td>
       </tr>
   <% end %>
+  </tbody>
 </table>
 
 <%= paginate @products %>

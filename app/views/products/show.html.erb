@@ -1,7 +1,29 @@
-<h1>Produkt <%= @product.name %></h1>
+<h1 class="title">Produkt <%= @product.name %> <%= link_to 'Upravit', edit_product_path(@product), class: 'button is-primary' %></h1>
 
-<%= link_to 'Upravit', edit_product_path(@product) %>
-
-<% @product.product_variants.each do |variant| %>
-    <p class="<%= params[:variant_id].to_i == variant.id ? 'active' : '' %>"><%= variant.code %></p>
-<% end %>
+<h4 class="title is-4">Varianty</h4>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Kód</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @product.product_variants.each do |variant| %>
+      <tr class="<%= params[:variant_id].to_i == variant.id ? 'active' : '' %>">
+        <td><%= variant.code %></td>
+        <td class="last-col">
+          <%= link_to delete_product_variant_path(variant), method: :delete, data: {confirm: 'Opravdu smazat?'}, class: 'button is-danger is-small' do %>
+              <span class="icon is-small">
+                <i class="fa fa-trash"></i>
+              </span>
+          <% end %>
+        </td>
+      </tr>
+  <% end.empty? %>
+      <tr>
+        <td>Žádné varianty</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

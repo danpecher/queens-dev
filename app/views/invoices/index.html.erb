@@ -1,17 +1,26 @@
-<h1>Doklady</h1>
+<h1 class="title">Doklady <%= link_to 'Vytvořit', new_invoice_path, class: 'button is-success' %></h1>
 
-<%= link_to 'Vytvořit', new_invoice_path %>
-
-<table>
+<table class="table">
+  <thead>
   <tr>
-    <th>Kód</th>
+    <th>Číslo</th>
+    <th></th>
   </tr>
+  </thead>
+  <tbody>
   <% if @invoices.each do |invoice| %>
       <tr>
         <td><%= link_to invoice.number, invoice_path(invoice) %></td>
-        <td>
-          <%= link_to invoice_path(invoice), method: :delete, data: {confirm: 'Opravdu smazat?'} do %>
-            <i class="fa fa-trash"></i>
+        <td class="last-col">
+          <%= link_to invoice_path(invoice), method: :delete, data: {confirm: 'Opravdu smazat?'}, class: 'button is-danger is-small' do %>
+              <span class="icon is-small">
+                <i class="fa fa-trash"></i>
+              </span>
+          <% end %>
+          <%= link_to edit_invoice_path(invoice), class: 'button is-primary is-small' do %>
+              <span class="icon is-small">
+                <i class="fa fa-pencil"></i>
+              </span>
           <% end %>
         </td>
       </tr>
@@ -20,6 +29,8 @@
         <td>Žádné doklady</td>
       </tr>
   <% end %>
+  </tbody>
 </table>
+
 
 <%= paginate @invoices %>

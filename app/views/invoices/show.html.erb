@@ -1,7 +1,33 @@
-<h1>Doklad #<%= @invoice.number %></h1>
+<h1 class="title">Doklad #<%= @invoice.number %> <%= link_to 'Upravit', edit_invoice_path(@invoice), class: 'button is-primary' %></h1>
 
-<%= link_to 'Upravit', edit_invoice_path(@invoice) %>
-
-<% @invoice.invoice_items.each do |item| %>
-    <p><%= link_to item.product_variant.code, product_path(item.product_variant.product, variant_id: item.product_variant.id) %> (<%= item.quantity %>ks)</p>
-<% end %>
+<h4 class="title is-4">Položky</h4>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Název produktu</th>
+    <th>Kód varianty</th>
+    <th>Počet</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @invoice.invoice_items.each do |item| %>
+      <tr>
+        <td><%= link_to item.product_variant.product.name, product_path(item.product_variant.product, variant_id: item.product_variant.id) %></td>
+        <td><%= item.product_variant.code %></td>
+        <td><%= item.quantity %></td>
+        <td class="last-col">
+          <%= link_to delete_invoice_item_path(item), method: :delete, data: {confirm: 'Opravdu smazat?'}, class: 'button is-danger is-small' do %>
+              <span class="icon is-small">
+                <i class="fa fa-trash"></i>
+              </span>
+          <% end %>
+        </td>
+      </tr>
+  <% end.empty? %>
+      <tr>
+        <td>Žádné položky</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -14,7 +14,7 @@
  *= require_self
  */
 
-p.active {
+tr.active {
     animation: blink 1.5s;
 }
 
@@ -24,10 +24,29 @@ p.active {
     }
 
     50% {
-        background: #2e8329;
+        background: #00d1b2;
     }
 
     100%  {
         background: #fff;
     }
+}
+
+td.last-col {
+    white-space: nowrap;
+    width: 1%;
+}
+
+fieldset {
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.m-20 {
+    margin-top: 20px;
+}
+
+select {
+
 }

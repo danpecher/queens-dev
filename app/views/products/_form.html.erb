@@ -1,13 +1,16 @@
 <%= simple_form_for @product do |f| %>
-    <%= f.input :name %>
-
+    <%= f.input :name, label: 'Název' %>
+    <br>
+    <h3 class="title is-4">Varianty</h3>
     <%= f.nested_fields_for :product_variants do |ff| %>
         <%= ff.input :code, label: 'Kód varianty' %>
-        <%= ff.remove_nested_fields_link do %>
-            <i class="fa fa-trash"></i>
-        <% end %>
+        <%= ff.remove_nested_fields_link 'Smazat', class: 'is-danger' %>
     <% end %>
-    <%= f.add_nested_fields_link :product_variants %>
+    <div>
+      <%= f.add_nested_fields_link :product_variants, 'Přidat variantu', class: 'button is-small' %>
+    </div>
 
-    <%= f.button :submit, 'Uložit' %>
+    <div class="m-20">
+      <%= f.button :submit, 'Uložit', class: 'button is-success' %>
+    </div>
 <% end %>
